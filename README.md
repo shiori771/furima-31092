@@ -16,12 +16,12 @@
 
 ### Association
 
-- has_many :posts
 - has_many :items
+- has_many :purchases
 
 
 
-## posts テーブル
+## items テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
@@ -51,7 +51,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :post
+- belongs_to :item
 - has_one :addresses
 
 
@@ -68,5 +68,5 @@
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :item
 
