@@ -25,10 +25,10 @@
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| post_item_name      | string     | null: false                    |
-| post_text           | text       | null: false                    |
-| post_category       | string     | null: false                    |
-| post_status         | string     | null: false                    |
+| item_name           | string     | null: false                    |
+| text                | text       | null: false                    |
+| category            | string     | null: false                    |
+| status              | string     | null: false                    |
 | shipping_cost       | string     | null: false                    |
 | shipping_prefecture | string     | null: false                    |
 | shipping_date       | integer    | null: false                    |
