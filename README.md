@@ -60,7 +60,7 @@
 | Column       | Type        | Options     |
 | ------------ | ----------- | ----------- |
 | postcode     | string      | null: false |
-| prefecture   | string      | null: false |
+| prefecture   | integer     | null: false |
 | city         | string      | null: false |
 | block        | string      | null: false |
 | building     | string      |             |
