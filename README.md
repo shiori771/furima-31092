@@ -25,7 +25,7 @@
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| item_name           | string     | null: false                    |
+| name                | string     | null: false                    |
 | text                | text       | null: false                    |
 | category            | integer    | null: false                    |
 | status              | integer    | null: false                    |
