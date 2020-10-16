@@ -1,24 +1,80 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| nickname        | string  | null: false |
+| email           | string  | null: false |
+| password        | string  | null: false |
+| last_name       | string  | null: false |
+| first_name      | string  | null: false |
+| last_name_kana  | string  | null: false |
+| first_name_kana | string  | null: false |
+| birth_year      | integer | null: false |
+| birth_month     | integer | null: false |
+| birth_day       | integer | null: false |
 
-* Ruby version
 
-* System dependencies
+### Association
 
-* Configuration
+- has_many :posts
+- has_many :items
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## posts テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| post_item_name      | string     | null: false                    |
+| post_text           | text       | null: false                    |
+| post_category       | string     | null: false                    |
+| post_status         | string     | null: false                    |
+| shipping_cost       | string     | null: false                    |
+| shipping_prefecture | string     | null: false                    |
+| shipping_date       | integer    | null: false                    |
+| price               | integer    | null: false                    |
+| sales_commission    | integer    | null: false                    |
+| sales_profit        | integer    | null: false                    |
+| user_id (FK)        | references | null: false, foreign_key: true |
 
-* Deployment instructions
 
-* ...
+### Association
+
+- belongs_to :user
+- has_one :item
+
+
+## items テーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| card_number      | integer    | null: false                    |
+| expiration_month | integer    | null: false                    |
+| expiration_year  | integer    | null: false                    |
+| approval_code    | integer    | null: false                    |
+| user_id (FK)     | references | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :post
+- has_one :addresses
+
+
+## addresses テーブル
+
+| Column       | Type        | Options     |
+| ------------ | ----------- | ----------- |
+| postcode     | integer(8)  | null: false |
+| prefecture   | string      | null: false |
+| city         | string      | null: false |
+| block        | string      | null: false |
+| building     | string      |             |
+| phone_number | integer(11) | null: false |
+
+### Association
+
+- belongs_to :item
+
