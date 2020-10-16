@@ -64,7 +64,7 @@
 | city         | string      | null: false |
 | block        | string      | null: false |
 | building     | string      |             |
-| phone_number | integer(11) | null: false |
+| phone_number | string      | null: false |
 
 ### Association
 
