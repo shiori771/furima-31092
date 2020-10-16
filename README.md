@@ -59,7 +59,7 @@
 
 | Column       | Type        | Options     |
 | ------------ | ----------- | ----------- |
-| postcode     | integer(8)  | null: false |
+| postcode     | string      | null: false |
 | prefecture   | string      | null: false |
 | city         | string      | null: false |
 | block        | string      | null: false |
