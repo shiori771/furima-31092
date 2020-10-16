@@ -46,11 +46,7 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| card_number      | integer    | null: false                    |
-| expiration_month | integer    | null: false                    |
-| expiration_year  | integer    | null: false                    |
-| approval_code    | integer    | null: false                    |
-| user_id (FK)     | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 
