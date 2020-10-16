@@ -27,10 +27,10 @@
 | ------------------- | ---------- | ------------------------------ |
 | item_name           | string     | null: false                    |
 | text                | text       | null: false                    |
-| category            | string     | null: false                    |
-| status              | string     | null: false                    |
-| shipping_cost       | string     | null: false                    |
-| shipping_prefecture | string     | null: false                    |
+| category            | integer    | null: false                    |
+| status              | integer    | null: false                    |
+| shipping_cost       | integer    | null: false                    |
+| shipping_prefecture | integer    | null: false                    |
 | shipping_date       | integer    | null: false                    |
 | price               | integer    | null: false                    |
 | sales_commission    | integer    | null: false                    |
