@@ -53,10 +53,16 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
-    it 'passwordは半角英数の混合入力しないと登録できないこと' do
+    it 'passwordは半角英数の混合を入力しないと登録できないこと(数字のみ)' do
       @user.password = '123456'
       @user.valid?
       expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
+    end
+
+    it 'passwordは半角英数の混合を入力しないと登録できないこと(半角アルファベットのみ)' do
+      @user.password = 'abcdefg'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
     end
 
     it 'passwordとpassword_confirmationが不一致では登録できないこと' do
@@ -75,8 +81,7 @@ RSpec.describe User, type: :model do
     it 'first_nameが空だと登録できないこと' do
       @user.first_name = nil
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name can't be blank",
-                                                    'First name Full-width characters')
+      expect(@user.errors.full_messages).to include("First name can't be blank",'First name Full-width characters')
     end
 
     it 'last_nameは全角（漢字・ひらがな・カタカナ）で入力しないと登録できないこと' do
