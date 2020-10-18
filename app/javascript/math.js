@@ -13,4 +13,4 @@ function math () {
   });
 }
 
-window.addEventListener("load", math);
+setInterval(math, 1000)
