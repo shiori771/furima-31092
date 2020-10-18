@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :name, presence: true
   validates :text, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999,  only_integer: true }, format: { with: /\A[0-9]+\z/ }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999,  only_integer: true, message: 'Out of setting range' }, format: { with: /\A[0-9]+\z/, message: ' Half-width number' }
   
   validates :category_id,  presence: true
   validates :status_id, presence: true
@@ -14,11 +14,11 @@ class Item < ApplicationRecord
   validates :shipping_date_id, presence: true
   
   
-  validates :category_id, numericality: { other_than: 1 }
-  validates :status_id, numericality: { other_than: 1 }
-  validates :shipping_cost_id, numericality: { other_than: 1 }
-  validates :shipping_prefecture_id, numericality: { other_than: 1 }
-  validates :shipping_date_id, numericality: { other_than: 1 }
+  validates :category_id, numericality: { other_than: 1, message: 'Select' }
+  validates :status_id, numericality: { other_than: 1, message: 'Select' }
+  validates :shipping_cost_id, numericality: { other_than: 1, message: 'Select' }
+  validates :shipping_prefecture_id, numericality: { other_than: 1, message: 'Select' }
+  validates :shipping_date_id, numericality: { other_than: 1, message: 'Select' }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :category, :status, :shipping_cost, :shipping_prefecture, :shipping_date
