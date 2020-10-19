@@ -9,22 +9,23 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_prefecture
   belongs_to_active_hash :shipping_date
 
-  with_options presence: true do
-    validates :image
-    validates :name
-    validates :text
-  end
+  validates :image, presence: true
+  validates :name, presence: true
+  validates :text, presence: true
 
-  with_options presence: true, numericality: { other_than: 1, message: 'Select' } do
-    validates :category_id
-    validates :status_id
-    validates :shipping_cost_id
-    validates :shipping_prefecture_id
-    validates :shipping_date_id
-  end
+  validates :price, presence: true, format: { with: /\A[0-9]{3,7}+\z/, message: 'Half-width number' }
 
-  validates :price,
-            presence: true,
-            format: { with: /\A[0-9]{3,7}+\z/, message: 'Half-width number' },
-            numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
+
+  validates :category_id, presence: true
+  validates :status_id, presence: true
+  validates :shipping_cost_id, presence: true
+  validates :shipping_prefecture_id, presence: true
+  validates :shipping_date_id, presence: true
+
+  validates :category_id, numericality: { other_than: 1, message: 'Select' }
+  validates :status_id, numericality: { other_than: 1, message: 'Select' }
+  validates :shipping_cost_id, numericality: { other_than: 1, message: 'Select' }
+  validates :shipping_prefecture_id, numericality: { other_than: 1, message: 'Select' }
+  validates :shipping_date_id, numericality: { other_than: 1, message: 'Select' }
 end
