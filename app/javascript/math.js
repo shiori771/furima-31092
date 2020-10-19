@@ -5,11 +5,11 @@ function math () {
     const ItemPrice = Price.value
     const TaxPrice = document.getElementById("add-tax-price");
     const Profit = document.getElementById("profit");
-    const TaxFee = ItemPrice * Tax;
-    const afterTaxFee = Math.floor(TaxFee);
-    const ProfitFee = ItemPrice - afterTaxFee;
+    const beforeTax = ItemPrice * Tax;
+    const afterTaxFee = Math.floor(beforeTax);
+    const ProfitPrice = ItemPrice - afterTaxFee;
     TaxPrice.innerHTML = afterTaxFee;
-    Profit.innerHTML = ProfitFee;
+    Profit.innerHTML = ProfitPrice;
   });
 }
 
