@@ -13,7 +13,10 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :name, presence: true
   validates :text, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999,  only_integer: true, message: 'Out of setting range' }, format: { with: /\A[0-9]+\z/, message: ' Half-width number' }
+
+  validates :price,  presence: true, format: { with: /\A[0-9]{3,7}+\z/, message: 'Half-width number' }
+
+  validates :price, presence: true, numericality: { only_integer: true,  greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: 'Out of setting range' }
   
   validates :category_id,  presence: true
   validates :status_id, presence: true
