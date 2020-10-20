@@ -34,17 +34,11 @@ class ItemsController < ApplicationController
   end
 
   def order
-    @purchase = Purchase.new
+    
   end
 
   def buy
-    @purchase = Purchase.create
-    if @purchase.valid?
-       @purchase.save
-       redirect_to root_path
-    else
-      render :order
-    end
+    
   end
 
   private

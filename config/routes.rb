@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root to: "items#index"
   resources :items do
     member do
-      get "order", to: "items#order"  
-      post "buy", to: "items#buy"
+      get "index", to: "purchase#index"  
+      post "create", to: "purchase#create"
     end
   end
 end
