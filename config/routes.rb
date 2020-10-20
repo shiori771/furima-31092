@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :items do
     member do
       get "order", to: "items#order"  
+      post "buy", to: "items#buy"
     end
   end
 end
