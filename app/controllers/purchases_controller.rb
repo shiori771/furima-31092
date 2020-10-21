@@ -1,11 +1,11 @@
 class PurchasesController < ApplicationController
+  before_action :set_purchase, only: [:index, :create]
+
   def index
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
        @order_address.save
@@ -19,5 +19,9 @@ class PurchasesController < ApplicationController
 
   def order_params
     params.require(:order_address).permit(:user_id, :item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number, :purchase_id)
+  end
+
+  def set_purchase
+    @item = Item.find(params[:item_id])
   end
 end
