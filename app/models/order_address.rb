@@ -1,6 +1,6 @@
 class OrderAddress
   include ActiveModel::Model
-  attr_accessor :postcode, :prefecture_id, :city, :block, :building, :phone_number
+  attr_accessor :postcode, :prefecture_id, :city, :block, :building, :phone_number, :token, :user_id, :item_id
 
   with_options  presence: true do
     validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input correctly"}
@@ -12,7 +12,7 @@ class OrderAddress
   validates :prefecture_id, presence: true, numericality: {other_than: 1, message: 'Select'}
   
   def save
-    purchase = Purchase.create(user_id: user.id, item_id: item.id)
-    Address.create(postcode: postcode, prefecture_id: prefecture.id, city: city, block: block, building: building, phone_number: phone_number, purchase_id: purchase.id)
+    purchase = Purchase.create(user_id: user_id, item_id: item_id)
+    Address.create(postcode: postcode, prefecture_id: prefecture_id, city: city, block: block, building: building, phone_number: phone_number, purchase_id: purchase.id)
   end
 end
