@@ -5,7 +5,7 @@ class OrderAddress
   with_options  presence: true do
     validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input correctly"}
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
-    validates :block, format: { with: /\A[0-9ぁ-んァ-ン一-龥]+\z/}
+    validates :block, format: { with: /\A[0-9-ぁ-んァ-ン一-龥]+\z/}
     validates :phone_number, format: { with: /\A\d{11}\z/, message: "Input only number"}
   end
 
