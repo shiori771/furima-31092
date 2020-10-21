@@ -8,6 +8,7 @@ class OrderAddress
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
     validates :block, format: { with: /\A[0-9ぁ-んァ-ン一-龥.-]+\z/}
     validates :phone_number, format: { with: /\A\d{11}\z/, message: "Input only number"}
+    validates :token
   end
 
   validates :prefecture_id, presence: true, numericality: {other_than: 1, message: 'Select'}
