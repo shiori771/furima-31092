@@ -1,6 +1,7 @@
 class OrderAddress
+
   include ActiveModel::Model
-  attr_accessor :postcode, :prefecture_id, :city, :block, :building, :phone_number, :token, :user_id, :item_id
+  attr_accessor :postcode, :prefecture_id, :city, :block, :building, :phone_number, :token, :purchase_id, :user_id, :item_id
 
   with_options  presence: true do
     validates :postcode, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Input correctly"}
