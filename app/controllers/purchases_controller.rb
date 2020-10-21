@@ -1,11 +1,10 @@
 class PurchasesController < ApplicationController
   def index
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
   end
 
   def create
-    binding.pry
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
        @order_address.save
@@ -18,6 +17,6 @@ class PurchasesController < ApplicationController
   private
 
   def order_params
-    params.require(:order_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number)
+    params.require(:order_address).permit(:user_id, :item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number, :purchase_id)
   end
 end
