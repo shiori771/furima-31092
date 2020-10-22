@@ -6,7 +6,6 @@ class PurchasesController < ApplicationController
 
   def index
     @order_address = OrderAddress.new
-    @order_address.present?
   end
 
   def create
