@@ -1,10 +1,13 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :move_to_index
+  before_action :restrict_sold_out
   before_action :set_purchase, only: [:index, :create]
+  
 
   def index
     @order_address = OrderAddress.new
+    @order_address.present?
   end
 
   def create
@@ -19,6 +22,14 @@ class PurchasesController < ApplicationController
   end
   
   private
+
+  def restrict_sold_out
+    @item = Item.find(params[:item_id])
+    @order_done = Purchase.find_by_item_id(params[:item_id])
+    if @order_done.present?
+        return redirect_to root_path
+    end
+  end
 
   def move_to_index
     if current_user.id == Item.find(params[:item_id]).user_id
