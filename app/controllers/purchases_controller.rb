@@ -2,9 +2,8 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :move_to_index
   before_action :restrict_sold_out
-  before_action :set_purchase, only: [:index, :create]
+  before_action :set_purchase
   
-
   def index
     @order_address = OrderAddress.new
     @order_address.present?
@@ -22,27 +21,27 @@ class PurchasesController < ApplicationController
   end
   
   private
-
-  def restrict_sold_out
-    @item = Item.find(params[:item_id])
-    @order_done = Purchase.find_by_item_id(params[:item_id])
-    if @order_done.present?
-        return redirect_to root_path
-    end
-  end
-
+  
   def move_to_index
     if current_user.id == Item.find(params[:item_id]).user_id
       redirect_to root_path
     end
   end
-  
-  def order_params
-    params.require(:order_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number, :purchase_id).merge(token: params[:token], user_id: current_user.id, item_id: Item.find(params[:item_id]).id)
+
+  def restrict_sold_out
+    set_purchase
+    @order_done = Purchase.find_by_item_id(params[:item_id])
+    if @order_done.present?
+        return redirect_to root_path
+    end
   end
   
   def set_purchase
     @item = Item.find(params[:item_id])
+  end
+
+  def order_params
+    params.require(:order_address).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number, :purchase_id).merge(token: params[:token], user_id: current_user.id, item_id: Item.find(params[:item_id]).id)
   end
   
   def pay_order
